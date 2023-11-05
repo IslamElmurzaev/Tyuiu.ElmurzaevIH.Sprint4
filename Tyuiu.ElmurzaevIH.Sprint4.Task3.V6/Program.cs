@@ -4,57 +4,58 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Tyuiu.ElmurzaevIH.Sprint4.Task2.V19.Lib;
+using Tyuiu.ElmurzaevIH.Sprint4.Task3.V6.Lib;
 
-namespace Tyuiu.ElmurzaevIH.Sprint4.Task2.V19
+namespace Tyuiu.ElmurzaevIH.Sprint4.Task3.V6
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Random rnd = new Random();
             DataService ds = new DataService();
 
             Console.Title = "Спринт #4 | Выполнил: Ельмурзаев И.Х. | ИИПб-23-1";
             Console.WriteLine("***************************************************************************");
             Console.WriteLine("* Спринт #4                                                               *");
-            Console.WriteLine("* Тема: Одномерные массивы. (генератор случайных чисел)                   *");
-            Console.WriteLine("* Задание #2                                                              *");
-            Console.WriteLine("* Вариант #19                                                             *");
+            Console.WriteLine("* Тема: Двумерные массивы. (статический ввод)                            *");
+            Console.WriteLine("* Задание #3                                                              *");
+            Console.WriteLine("* Вариант #6                                                              *");
             Console.WriteLine("* Выполнил: Ельмурзаев Ислам Хаважевич | ИИПб-23-1                        *");
             Console.WriteLine("***************************************************************************");
             Console.WriteLine("* УСЛОВИЕ:                                                                *");
-            Console.WriteLine("* Дан одномерный целочисленный массив на 14 элементов заполненный         *");
-            Console.WriteLine("* случайными в диапазоне от 4 до 9 подсчитать сумму нечетных элементов    *");
-            Console.WriteLine("* массива                                                                 *");
+            Console.WriteLine("* Дан двумерный целочисленный массив 5 на 5 элементов, заполненный        *");
+            Console.WriteLine("* статическими значениями в диапазоне от 3 до 8. Найдите максимальный     *");
+            Console.WriteLine("* элемент во второй строке массива.                                       *");
             Console.WriteLine("*                                                                         *");
             Console.WriteLine("***************************************************************************");
             Console.WriteLine("* ИСХОДНЫЕ ДАННЫЕ:                                                        *");
             Console.WriteLine("***************************************************************************");
 
-            Console.Write("Введите количество элементов массива: ");
-            int len = Convert.ToInt32(Console.ReadLine());
+            int[,] array = new int[5, 5] { { 8, 8, 3, 4, 5 },
+                                           { 8, 6, 6, 4, 6 },
+                                           { 3, 6, 5, 3, 4 },
+                                           { 5, 6, 3, 7, 5 },
+                                           { 7, 8, 5, 6, 6 } };
 
-            int[] nums = new int[len];
+            int rows = array.GetUpperBound(0) + 1;
+            int col = array.Length / rows;
 
-            for (int i = 0; i < len; i++)
+            Console.WriteLine("Массив:");
+            for (int i = 0; i < rows; i++)
             {
-                nums[i] = rnd.Next(4, 10);
+                for (int j = 0; j < col; j++)
+                {
+                    Console.Write($"{array[i, j]} \t");
+                }
+                Console.WriteLine();
             }
 
-            Console.WriteLine("Массив: ");
-            for (int i = 0; i < nums.Length; i++)
-            {
-                Console.Write(nums[i] + "\t");
-            }
-
-            Console.WriteLine();
             Console.WriteLine("***************************************************************************");
             Console.WriteLine("* РЕЗУЛЬТАТ:                                                              *");
             Console.WriteLine("***************************************************************************");
 
-            int res = ds.Calculate(nums);
-            Console.WriteLine("Сумма нечетных элеметов массива = " + res);
+            int res = ds.Calculate(array);
+            Console.WriteLine("Максимальный элемент второй строки массива = " + res);
             Console.ReadKey();
         }
     }
