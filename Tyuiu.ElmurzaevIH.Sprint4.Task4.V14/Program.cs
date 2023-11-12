@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Tyuiu.ElmurzaevIH.Sprint4.Task3.V6.Lib;
+using Tyuiu.ElmurzaevIH.Sprint4.Task4.V14.Lib;
 
-namespace Tyuiu.ElmurzaevIH.Sprint4.Task3.V6
+namespace Tyuiu.ElmurzaevIH.Sprint4.Task4.V14
 {
     internal class Program
     {
@@ -17,9 +17,9 @@ namespace Tyuiu.ElmurzaevIH.Sprint4.Task3.V6
             Console.Title = "Спринт #4 | Выполнил: Ельмурзаев И.Х. | ИИПб-23-1";
             Console.WriteLine("***************************************************************************");
             Console.WriteLine("* Спринт #4                                                               *");
-            Console.WriteLine("* Тема: Двумерные массивы. (статический ввод)                             *");
-            Console.WriteLine("* Задание #3                                                              *");
-            Console.WriteLine("* Вариант #6                                                              *");
+            Console.WriteLine("* Тема: Двумерные массивы. (ввод с клавиатуры)                            *");
+            Console.WriteLine("* Задание #4                                                              *");
+            Console.WriteLine("* Вариант #14                                                              *");
             Console.WriteLine("* Выполнил: Ельмурзаев Ислам Хаважевич | ИИПб-23-1                        *");
             Console.WriteLine("***************************************************************************");
             Console.WriteLine("* УСЛОВИЕ:                                                                *");
@@ -31,31 +31,51 @@ namespace Tyuiu.ElmurzaevIH.Sprint4.Task3.V6
             Console.WriteLine("* ИСХОДНЫЕ ДАННЫЕ:                                                        *");
             Console.WriteLine("***************************************************************************");
 
-            int[,] array = new int[5, 5] { { 8, 8, 3, 4, 5 },
-                                           { 8, 6, 6, 4, 6 },
-                                           { 3, 6, 5, 3, 4 },
-                                           { 5, 6, 3, 7, 5 },
-                                           { 7, 8, 5, 6, 6 } };
+            Console.Write("Введите количество строк массива: ");
+            int rows = Convert.ToInt32(Console.ReadLine());
 
-            int rows = array.GetUpperBound(0) + 1;
-            int col = array.Length / rows;
+            Console.Write("Введите количество столбцов массива: ");
+            int col = Convert.ToInt32(Console.ReadLine());
 
-            Console.WriteLine("Массив:");
+            int[,] mtrx = new int[rows, col];
+
+            Console.WriteLine("***************************************************************************");
+
             for (int i = 0; i < rows; i++)
             {
                 for (int j = 0; j < col; j++)
                 {
-                    Console.Write($"{array[i, j]} \t");
+                    Console.Write($"Введите {i},{j} элемент массива: ");
+                    mtrx[i,j] = Convert.ToInt32(Console.ReadLine());
+                }
+            }
+
+            Console.WriteLine("\nМассив:");
+
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0;j < col; j++)
+                {
+                    Console.Write($"{mtrx[i, j]} \t");
                 }
                 Console.WriteLine();
             }
+            Console.WriteLine();
 
             Console.WriteLine("***************************************************************************");
             Console.WriteLine("* РЕЗУЛЬТАТ:                                                              *");
             Console.WriteLine("***************************************************************************");
+            int[,] res = ds.Calculate(mtrx);
 
-            int res = ds.Calculate(array);
-            Console.WriteLine("Максимальный элемент второй строки массива = " + res);
+            Console.WriteLine("Новый массив:");
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < col; j++)
+                {
+                    Console.Write($"{mtrx[i, j]} \t");
+                }
+                Console.WriteLine();
+            }
             Console.ReadKey();
         }
     }
