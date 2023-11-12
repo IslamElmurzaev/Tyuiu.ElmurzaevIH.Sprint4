@@ -4,28 +4,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Tyuiu.ElmurzaevIH.Sprint4.Task4.V14.Lib;
+using Tyuiu.ElmurzaevIH.Sprint4.Task5.V2.Lib;
 
-namespace Tyuiu.ElmurzaevIH.Sprint4.Task4.V14
+namespace Tyuiu.ElmurzaevIH.Sprint4.Task5.V2
 {
     internal class Program
     {
         static void Main(string[] args)
         {
             DataService ds = new DataService();
+            Random rnd = new Random();
 
             Console.Title = "Спринт #4 | Выполнил: Ельмурзаев И.Х. | ИИПб-23-1";
             Console.WriteLine("***************************************************************************");
             Console.WriteLine("* Спринт #4                                                               *");
-            Console.WriteLine("* Тема: Двумерные массивы. (ввод с клавиатуры)                            *");
-            Console.WriteLine("* Задание #4                                                              *");
-            Console.WriteLine("* Вариант #14                                                             *");
+            Console.WriteLine("* Тема: Двумерные массивы. (генератор случайных чисел)                    *");
+            Console.WriteLine("* Задание #5                                                              *");
+            Console.WriteLine("* Вариант #2                                                              *");
             Console.WriteLine("* Выполнил: Ельмурзаев Ислам Хаважевич | ИИПб-23-1                        *");
             Console.WriteLine("***************************************************************************");
             Console.WriteLine("* УСЛОВИЕ:                                                                *");
             Console.WriteLine("* Дан двумерный целочисленный массив 5 на 5 элементов, заполненный        *");
-            Console.WriteLine("* статическими значениями в диапазоне от 1 до 8. Заменить нечетные элем.  *");
-            Console.WriteLine("* на 0                                                                    *");
+            Console.WriteLine("* случайными значениями в диапазоне от -7 до 5.                           *");
+            Console.WriteLine("* Найти количество отрицательных элементов                                *");
             Console.WriteLine("*                                                                         *");
             Console.WriteLine("***************************************************************************");
             Console.WriteLine("* ИСХОДНЫЕ ДАННЫЕ:                                                        *");
@@ -45,8 +46,7 @@ namespace Tyuiu.ElmurzaevIH.Sprint4.Task4.V14
             {
                 for (int j = 0; j < col; j++)
                 {
-                    Console.Write($"Введите {i},{j} элемент массива: ");
-                    mtrx[i,j] = Convert.ToInt32(Console.ReadLine());
+                    mtrx[i, j] = rnd.Next(-7, 6);
                 }
             }
 
@@ -54,7 +54,7 @@ namespace Tyuiu.ElmurzaevIH.Sprint4.Task4.V14
 
             for (int i = 0; i < rows; i++)
             {
-                for (int j = 0;j < col; j++)
+                for (int j = 0; j < col; j++)
                 {
                     Console.Write($"{mtrx[i, j]} \t");
                 }
@@ -65,17 +65,9 @@ namespace Tyuiu.ElmurzaevIH.Sprint4.Task4.V14
             Console.WriteLine("***************************************************************************");
             Console.WriteLine("* РЕЗУЛЬТАТ:                                                              *");
             Console.WriteLine("***************************************************************************");
-            int[,] res = ds.Calculate(mtrx);
 
-            Console.WriteLine("Новый массив:");
-            for (int i = 0; i < rows; i++)
-            {
-                for (int j = 0; j < col; j++)
-                {
-                    Console.Write($"{mtrx[i, j]} \t");
-                }
-                Console.WriteLine();
-            }
+            int res = ds.Calculate(mtrx);
+            Console.WriteLine("Количество отрицательных элементов массива = " + res);
             Console.ReadKey();
         }
     }
